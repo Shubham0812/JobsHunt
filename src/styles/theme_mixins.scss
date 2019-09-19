@@ -1,0 +1,56 @@
+@mixin theme-based-configurations($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $colorPrimaryDark: mat-color($primary, darker);
+  $colorPrimaryLight: mat-color($primary, lighter);
+  $colorPrimary: mat-color($primary, default);
+
+  $colorAccentDark: mat-color($accent, darker);
+  $colorAccentLight: mat-color($accent, lighter);
+  $colorAccent: mat-color($accent, default);
+
+  $colorBackground: mat-color($background, background);
+  $colorText: mat-color($foreground, text);
+
+  .mat-primary-lite-background {
+    background-color: $colorPrimaryLight;
+  }
+
+  .mat-primary-background {
+    background-color: $colorPrimary;
+  }
+
+  .mat-accent-background {
+    background-color: $colorAccent;
+  }
+
+  .mat-primary-text {
+    color: $colorPrimary !important;
+  }
+
+  .mat-accent-text {
+    color: $colorAccent;
+  }
+
+  .mat-primary-border {
+    border: 1px solid $colorPrimary;
+  }
+  .mat-primary-border-bold {
+    border: 2px solid $colorPrimary;
+  }
+  .mat-primary-border-top-bolder {
+    border-top: 4px solid $colorPrimary;
+  }
+  .mat-accent-border {
+    border: 1px solid $colorAccent;
+  }
+
+  .mat-p-hover:hover {
+    border-bottom: 4px solid $colorPrimaryDark;
+    transition: all 0.2s ease-out;
+    box-shadow: 0 -1px 0 0 $colorPrimaryDark inset, 0 -2px 0 0 #f3f3f3 inset;
+  }
+}

@@ -1,0 +1,22 @@
+
+@import "~@angular/material/theming";
+@import './theme_mixins.scss';
+
+@include mat-core();
+
+$SearchX-primary: mat-palette($mat-indigo, 500, 50, 700);
+$SearchX-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$SearchX-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$SearchX-theme: mat-dark-theme(
+  $SearchX-primary,
+  $SearchX-accent,
+  $SearchX-warn
+);
+
+
+@include angular-material-theme($SearchX-theme);
+@include theme-based-configurations($SearchX-theme);
