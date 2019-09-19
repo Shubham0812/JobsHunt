@@ -1,0 +1,55 @@
+@import "..//styles/vars.scss";
+
+.logo {
+  width: 64px;
+  height: 64px;
+  margin-top: $size-xs;
+  outline: none;
+}
+
+mat-toolbar {
+  background: rgba(10, 10, 10, 0.9);
+}
+
+mat-icon {
+  font-size: 24px;
+}
+
+img {
+  transition-duration: 600ms;
+}
+
+
+.loading-bar {
+  position: sticky;
+  top: 0;
+}
+
+.toolbar {
+  justify-content: space-between;
+}
+
+.heading {
+  font-size: 28px;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+}
+
+p:hover {
+  border-bottom: 4px solid white;
+  transition: all 0.2s ease-out;
+  box-shadow: 0 -1px 0 0 white inset, 0 -2px 0 0 #212121 inset;
+}
+
+.explore {
+  position: absolute;
+  right: 120px;
+  top: -10px;
+}
+
+.my-list {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+}
