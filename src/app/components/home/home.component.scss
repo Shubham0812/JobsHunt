@@ -1,0 +1,42 @@
+.container {
+  background: rgb(89, 81, 219);
+  background: linear-gradient(
+    21deg,
+    rgba(89, 81, 219, 1) 0%,
+    rgba(0, 234, 255, 1) 80%
+  );
+
+  //   height: 100%;
+}
+
+.heading {
+  img {
+    width: 500px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: -48px;
+}
+
+.title{
+  font-size: 3em;
+    font-family: Oswald;
+    line-height: 1;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+button{
+  padding: 4px;
+}
+
+// cards
