@@ -6,12 +6,13 @@
 ></mat-progress-bar>
 
 <mat-toolbar #toolbar class="mat-elevation-z8 flex toolbar">
-    <img  class="logo" src="assets/logo/logo.png" />
-    <div class = "heading">
-    <!-- <p class = "  explore primaryTypography margin-right-l padding-bottom-xs">My Jobs</p>   -->
-        <p class = " my-list primaryTypography margin-right-l padding-bottom-xs">My Jobs</p>  
-
-    </div>
+  <!-- <img  class="logo" src="assets/logo/logo.png" /> -->
+  <span class="margin-left-xs logo" [routerLink]="'/home'">JobsHunt</span>
+  <div class="heading">
+    <p class=" my-list primaryTypography margin-right-l padding-bottom-xs">
+      My Jobs
+    </p>
+  </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

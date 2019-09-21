@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { DataFetchService } from "../app/services/data-fetch.service";
 
 @Component({
   selector: "app-root",
@@ -9,9 +10,16 @@ import { Router } from "@angular/router";
 export class AppComponent implements OnInit {
   loading = false;
 
-  title = "JobHaven";
+  title = "JobsHunt";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private dataFetchSvc: DataFetchService) {
+    console.log("App initialization");
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataFetchSvc.currentState.subscribe(state => {
+      console.log("Current state", state);
+      this.loading = state;
+    });
+  }
 }

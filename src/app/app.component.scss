@@ -1,10 +1,11 @@
 @import "..//styles/vars.scss";
 
 .logo {
-  width: 64px;
-  height: 64px;
-  margin-top: $size-xs;
+  // width: 64px;
+  // height: 64px;
+  // margin-top: $size-xs;
   outline: none;
+  cursor: pointer;
 }
 
 mat-toolbar {
