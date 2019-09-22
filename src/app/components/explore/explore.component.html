@@ -1,1 +1,102 @@
-<p>explore works!</p>
+<div class="processing-overlay" *ngIf="processing">
+  <div class="processing">
+    <p
+      class="info font-weight-500 margin-remove-bottom padding-left-m padding-right-m"
+    >
+      Please wait, while we are fetching awesome jobs for you!
+    </p>
+  </div>
+</div>
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav
+    #sideNavBar
+    class="sidenav"
+    [opened]="sideNavBarOpened"
+    [mode]="screenSizeIsLtMedium ? 'over' : 'side'"
+  >
+    <div class="margin-top-xl margin-bottom-xl margin-left-m margin-right-xl">
+      <div class="flex flex-middle flex-between">
+        <p class="margin-remove-bottom margin-top-xs font-weight-500 mat-h2">
+          Filters
+        </p>
+        <button class="normal-button margin-top-xxs" (click)="toggleSidebar()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="margin-top-xl margin-bottom-xl margin-left-xl margin-right-xl">
+      <ng-container *ngIf="!processing">
+        <div class="margin-top-l text-center">
+          <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <mat-form-field
+              appearance="outline"
+              class="search_field"
+              #searchfield
+            >
+              <mat-label>Search for Jobs</mat-label>
+
+              <input
+                matInput
+                placeholder="Ex: Android developer"
+                formControlName="search"
+                autocomplete="off"
+              />
+              <button matSuffix type="submit">
+                <mat-icon
+                  aria-hidden="false"
+                  color="primary"
+                  aria-label="Search"
+                  >search</mat-icon
+                >
+              </button>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="flex flex-between flex-middle result margin-left-l margin-right-l" *ngIf="!noData">
+          <div class="flex flex-middle" >
+            <p class="margin-remove-bottom margin-top-xxs">Show Filters</p>
+            <mat-icon class = "mat-primary-text margin-left-xxs cursor-pointer" (click) = "toggleSidebar()">filter_list</mat-icon>
+          </div>
+          <div class="flex flex-middle result">
+            <p class="margin-remove-bottom margin-right-m">
+              Showing {{ this.jobs.length }} results out of
+              <ng-container *ngIf="this.searchQuery === ''">{{
+                allJobs.length
+              }}</ng-container>
+              <ng-container *ngIf="this.searchQuery !== ''">{{
+                searchJobs.length
+              }}</ng-container>
+            </p>
+            <mat-form-field appearance="outline">
+              <mat-label>Select a value</mat-label>
+              <mat-select
+                (selectionChange)="optionChanged($event.value)"
+                [(value)]="pagination"
+              >
+                <mat-option value="20">20</mat-option>
+                <mat-option value="30">30</mat-option>
+                <mat-option value="50">50</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class=" no-data" *ngIf="noData">
+          <p class="mat-h1 mat-primary-text secondayyTypography margin-top-xl">
+            Please check the search query
+          </p>
+          <img class="in-left " src="./assets/banners/no-data.svg" />
+        </div>
+        <div class="container">
+          <ng-container *ngIf="!noData">
+            <app-job-card
+              *ngFor="let job of jobs"
+              [jobData]="job"
+            ></app-job-card>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

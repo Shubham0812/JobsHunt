@@ -1,0 +1,126 @@
+@import "~src/styles/vars.scss";
+@import "~src/styles/mixins.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.processing-overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: block; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.processing {
+  position: absolute;
+  top: 40%;
+  top: 30%;
+  right: 0;
+  left: 0;
+  text-align: center;
+  color: white;
+  //   transform: translate(-50%, -50%);
+  //   -ms-transform: translate(-50%, -50%);
+}
+
+.info {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.search_field {
+  width: 50%;
+  font-family: "Montserrat", "Roboto";
+  button {
+    border: none;
+    background: none;
+    color: white;
+    // outline: none;
+  }
+  mat-icon {
+    font-size: 24px;
+  }
+  @include breakpoint-xs {
+    width: 59%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.result {
+  align-items: baseline;
+}
+
+.no-data {
+  margin-top: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  p {
+    font-size: 2rem;
+  }
+
+  img {
+    height: 300px;
+  }
+  @media only screen and (max-width: 952px) {
+    flex-direction: column;
+
+    img {
+      margin-top: 32px;
+    }
+  }
+  @media only screen and (max-width: 518px) {
+    p {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+.sidenav-container {
+  height: 100%;
+}
+// Contents of SideNav Menu
+.sidenav {
+  width: 20%;
+  min-width: 250px;
+  padding-left: $size-m;
+  background: inherit;
+  box-shadow: none;
+}
+
+// Contents of Side Nav Content
+.sidenav-content {
+  margin: 0;
+  padding: 0 $size-m $size-l;
+  box-sizing: border-box;
+  min-height: calc(100vh);
+}
+
+.normal-button {
+  border-radius: 50%;
+  height: 40px;
+  display: flex;
+  width: 40px;
+  z-index: 3;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.normal-button:hover {
+  color: #039be5;
+}
