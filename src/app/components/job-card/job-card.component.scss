@@ -17,14 +17,18 @@ mat-card {
   position: relative;
   font-family: "Montserrat", sans-serif !important;
 
-    @media only screen and (max-width: 616px) {
-        width: 450px;
+  @media only screen and (max-width: 1220px) {
+    width: 400px;
+  }
 
-    }
+  @media only screen and (max-width: 1118px) {
+    width: 420px;
+  }
 
+  @media only screen and (max-width: 616px) {
+    width: 450px;
+  }
 }
-
-
 
 .card-grid {
   display: grid;
@@ -36,10 +40,23 @@ mat-card {
   letter-spacing: 0.01em;
 }
 
-button{
-    transition: 0.5s;
+button {
+  transition: 0.5s;
 }
 
-button:hover{
-    color: #039BE5;
+button:hover {
+  color: #039be5;
 }
+
+.margin-left-source {
+  margin-left: 32px;
+  @media only screen and (max-width: 1220px) {
+    margin-left: 8px;
+  }
+}
+
+// .company-name {
+//   @media only screen and (max-width: 1220px) {
+//     width: 300px;
+//   }
+// }

@@ -7,7 +7,7 @@
         </p>
       </div>
       <div class="grid">
-        <div class="text-truncate">
+        <div class="text-truncate company-name">
           <p class="mat-h2 primary-text">{{ jobData.companyname }}</p>
         </div>
         <div class="location margin-left-xl ">
@@ -28,23 +28,43 @@
           </p>
         </div>
       </div>
-      <div class="margin-top-xs">
-        <div class="flex flex-middle">
-          <mat-icon class="mat-primary-text">card_travel</mat-icon>
-          <p
-            class="margin-remove-bottom margin-left-xs margin-top-xxs"
-            *ngIf="jobData.experience"
-          >
-            {{ jobData.experience }}
-          </p>
-          <p
-            class="margin-remove-bottom margin-left-xs margin-top-xxs"
-            *ngIf="!jobData.experience"
-          >
-            Freshers
-          </p>
+      <div class="grid">
+        <div class="margin-top-xs">
+          <div class="flex flex-middle">
+            <mat-icon class="mat-primary-text">card_travel</mat-icon>
+            <p
+              class="margin-remove-bottom margin-left-xs margin-top-xxs"
+              *ngIf="jobData.experience"
+            >
+              {{ jobData.experience }}
+            </p>
+            <p
+              class="margin-remove-bottom margin-left-xs margin-top-xxs"
+              *ngIf="!jobData.experience"
+            >
+              Freshers
+            </p>
+          </div>
+        </div>
+        <div class="margin-top-xs margin-left-source">
+          <div class="flex flex-middle">
+            <mat-icon class="mat-primary-text">account_circle</mat-icon>
+            <p
+              class="margin-remove-bottom margin-left-xs margin-top-xxs"
+              *ngIf="jobData.source"
+            >
+              {{ jobData.source }}
+            </p>
+            <p
+              class="margin-remove-bottom margin-left-xs margin-top-xxs"
+              *ngIf="!jobData.source"
+            >
+            Anonymous
+            </p>
+          </div>
         </div>
       </div>
+
       <div class="flex margin-top-xs">
         <mat-icon class="mat-primary-text">straighten</mat-icon>
         <div class="text-truncate">

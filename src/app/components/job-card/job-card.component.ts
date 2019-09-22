@@ -12,6 +12,7 @@ export class JobCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.jobData.source = this.capitalizeFirstLetter(this.jobData.source);
     this.jobData.skills = this.capitalizeFirstLetter(this.jobData.skills);
     this.jobData.title = this.jobData.title.slice(0, 50);
     this.jobData.skills = this.jobData.skills.slice(0, 50);
