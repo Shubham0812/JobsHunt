@@ -27,16 +27,20 @@
   margin-top: -48px;
 }
 
-.title{
+.title {
   font-size: 3em;
-    font-family: Oswald;
-    line-height: 1;
-    margin-top: 8px;
-    margin-bottom: 32px;
+  font-family: Oswald;
+  line-height: 1;
+  margin-top: 8px;
+  margin-bottom: 32px;
 }
 
-button{
+button {
+  transition: 0.5s;
+
   padding: 4px;
 }
 
-// cards
+button:hover {
+  color: #039be5;
+}
