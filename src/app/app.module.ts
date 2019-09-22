@@ -17,7 +17,8 @@ import {
   MatTooltipModule,
   MatSelectModule,
   MatInputModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatCheckboxModule
 } from "@angular/material";
 
 import { MatTabsModule } from "@angular/material/tabs";
@@ -48,7 +49,8 @@ import { JobCardComponent } from "./components/job-card/job-card.component";
     FormsModule,
     MatSidenavModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
