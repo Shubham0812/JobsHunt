@@ -1,0 +1,88 @@
+<mat-card class="padding-l">
+  <div class="card-grid">
+    <div class="card">
+      <div class="text-truncate">
+        <p class="mat-h1 mat-primary-text primary-text margin-right-s">
+          {{ jobData.title }}
+        </p>
+      </div>
+      <div class="grid">
+        <div class="text-truncate">
+          <p class="mat-h2 primary-text">{{ jobData.companyname }}</p>
+        </div>
+        <div class="location margin-left-xl ">
+          <mat-icon class="mat-primary-text">room</mat-icon>
+          <p
+            class="margin-remove-bottom"
+            style="margin-top: 4px; margin-left: 4px;"
+            *ngIf="jobData.location"
+          >
+            {{ jobData.location }}
+          </p>
+          <p
+            class="margin-remove-bottom"
+            style="margin-top: 4px; margin-left: 4px;"
+            *ngIf="!jobData.location"
+          >
+            Work from Home
+          </p>
+        </div>
+      </div>
+      <div class="margin-top-xs">
+        <div class="flex flex-middle">
+          <mat-icon class="mat-primary-text">card_travel</mat-icon>
+          <p
+            class="margin-remove-bottom margin-left-xs margin-top-xxs"
+            *ngIf="jobData.experience"
+          >
+            {{ jobData.experience }}
+          </p>
+          <p
+            class="margin-remove-bottom margin-left-xs margin-top-xxs"
+            *ngIf="!jobData.experience"
+          >
+            Freshers
+          </p>
+        </div>
+      </div>
+      <div class="flex margin-top-xs">
+        <mat-icon class="mat-primary-text">straighten</mat-icon>
+        <div class="text-truncate">
+          <p
+            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+            *ngIf="jobData.skills"
+          >
+            {{ jobData.skills }}
+          </p>
+          <p
+            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+            *ngIf="!jobData.skills"
+          >
+            B.E. / B Tech Graduate
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="flex margin-top-xs">
+      <mat-icon class="mat-primary-text">money</mat-icon>
+
+      <p
+        class="margin-remove-bottom mat-h4  secondaryTypography margin-left-xs"
+        *ngIf="jobData.salary"
+      >
+        {{ jobData.salary }}
+      </p>
+      <p
+        class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+        *ngIf="!jobData.salary"
+      >
+        Not Disclosed
+      </p>
+    </div>
+    <div class="flex" style="justify-self: end">
+      <button mat-raised-button (click)="onNavigate(jobData.applylink)">
+        Apply Link
+      </button>
+    </div>
+  </div>
+</mat-card>

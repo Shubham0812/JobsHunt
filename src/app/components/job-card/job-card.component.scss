@@ -1,0 +1,45 @@
+.location {
+  display: flex;
+  align-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+mat-card {
+  color: black;
+  width: 500px;
+  height: 250px;
+  margin: 15px 15px;
+  background: #fff;
+  position: relative;
+  font-family: "Montserrat", sans-serif !important;
+
+    @media only screen and (max-width: 616px) {
+        width: 450px;
+
+    }
+
+}
+
+
+
+.card-grid {
+  display: grid;
+  grid-template-rows: 1fr 0.4fr 0.1fr;
+}
+
+.primary-text {
+  font-family: Oswald, sans-serif !important;
+  letter-spacing: 0.01em;
+}
+
+button{
+    transition: 0.5s;
+}
+
+button:hover{
+    color: #039BE5;
+}
