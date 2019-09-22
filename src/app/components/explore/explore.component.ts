@@ -11,13 +11,22 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class ExploreComponent implements OnInit {
   jobs: IJobs[] = [];
   searchJobs: IJobs[] = [];
+  filterJobs: IJobs[] = [];
   allJobs: IJobs[];
   processing = true;
   searchForm!: FormGroup;
-  pagination = 20;
   count = 0;
   searchQuery = "";
-  sideNavBarOpened = true;
+  sideNavBarOpened = false;
+  selectedLocations: string[] = [];
+
+  locations: string[] = [];
+  pagination = 30;
+  pageStart = 0;
+  pageEnd = 29;
+  selectedPage = 1;
+  filtersApplied = false;
+  pages = [];
 
   noData = false;
 
@@ -35,10 +44,44 @@ export class ExploreComponent implements OnInit {
       console.log("Data fetched?", state);
       this.processing = state;
       if (!this.processing) {
+        this.locations = this.dataFetchSvc.locations;
         this.allJobs = this.dataFetchSvc.getJobs();
         this.doPagination();
+        this.getPages();
       }
     });
+  }
+
+  getPages() {
+    if (this.searchQuery === "") {
+      this.pages = [];
+      const temp = this.allJobs.length;
+      let pages = Math.round(temp / this.pagination);
+
+      if (temp % this.pagination !== 0) {
+        pages += 1;
+      }
+
+      for (let i = 0; i < pages; i++) {
+        this.pages.push(i + 1);
+      }
+      console.log("Total pages", this.pages);
+    } else {
+      console.log("Search query not empty");
+      this.pages = [];
+      const temp = this.searchJobs.length;
+      let pages = Math.round(temp / this.pagination);
+
+      if (temp % this.pagination !== 0) {
+        pages += 1;
+      }
+
+      for (let i = 0; i < pages; i++) {
+        this.pages.push(i + 1);
+      }
+
+      console.log("Total pages", this.pages);
+    }
   }
 
   toggleSidebar() {
@@ -46,36 +89,62 @@ export class ExploreComponent implements OnInit {
   }
 
   optionChanged(val: number) {
-    console.log("Option change", val);
     this.jobs = [];
-    this.pagination = val;
-    this.count = 0;
+    this.pagination = Number(val);
+    this.selectedPage = 1;
     if (this.searchQuery === "") {
+      this.pageStart = 0;
+      this.pageEnd = this.pagination - 1;
+      this.getPages();
       this.doPagination();
     } else {
       console.log("Developer query");
+      this.pageStart = 0;
+      this.pageEnd = this.pagination - 1;
+      this.getPages();
       this.doPaginationQuery();
     }
   }
 
+  pageChanged(val: number) {
+    this.selectedPage = val;
+    console.log("Page changed", val);
+    const pageStart = val * this.pagination - this.pagination;
+    console.log("Page start", pageStart);
+    this.pageStart = pageStart;
+    this.pageEnd = pageStart + this.pagination - 1;
+    console.log("Pages end", pageStart + Number(this.pagination));
+    if (this.searchQuery !== "") {
+      this.jobs = [];
+      this.doPaginationQuery();
+    } else {
+      this.doPagination();
+    }
+  }
+
   doPagination() {
+    this.count = 0;
+    this.jobs = [];
     this.allJobs.forEach(job => {
-      if (this.count < this.pagination) {
+      if (this.count >= this.pageStart && this.count <= this.pageEnd) {
         this.jobs.push(job);
-        this.count += 1;
       }
+      this.count += 1;
     });
+  }
+
+  doPaginationLocation() {
+    this.filterJobs = this.jobs;
+    this.jobs = this.jobs.splice(this.pageStart, this.pageEnd + 1);
   }
 
   doPaginationQuery() {
     this.count = 0;
-    this.allJobs.forEach(job => {
-      if (this.count < this.pagination) {
-        if (job.title.toLowerCase().includes(this.searchQuery)) {
-          this.jobs.push(job);
-          this.count += 1;
-        }
+    this.searchJobs.forEach(job => {
+      if (this.count >= this.pageStart && this.count <= this.pageEnd) {
+        this.jobs.push(job);
       }
+      this.count += 1;
     });
     if (!this.jobs.length) {
       console.log("No data from Search");
@@ -99,17 +168,59 @@ export class ExploreComponent implements OnInit {
       this.noData = false;
       this.processing = true;
       this.jobs = [];
+      this.searchJobs = [];
       this.totalHits();
       this.doPaginationQuery();
+      this.getPages();
+
       this.processing = false;
     } else {
       this.noData = false;
-
       this.jobs = [];
       this.searchJobs = [];
       this.count = 0;
       this.searchQuery = "";
       this.doPagination();
     }
+  }
+
+  searchBasedOnLocations() {
+    this.processing = true;
+    if (this.searchJobs.length) {
+      console.log("search from searchJobs");
+    } else {
+      console.log("in here");
+      this.jobs = [];
+      this.selectedLocations.forEach(loc => {
+        this.allJobs.forEach(job => {
+          if (job.location.toLowerCase().includes(loc.toLowerCase())) {
+            this.jobs.push(job);
+          }
+        });
+      });
+      console.log("Check jobs", this.jobs);
+      this.doPaginationLocation();
+      this.getPages();
+      this.processing = false;
+    }
+  }
+
+  locationToggle(event: any, location: string) {
+    console.log("Selection event", event.checked, location);
+    if (event.checked && !this.selectedLocations.includes(location)) {
+      this.selectedLocations.push(location);
+      this.searchBasedOnLocations();
+    } else {
+      const index = this.selectedLocations.indexOf(location);
+      if (index > -1) {
+        this.selectedLocations.splice(index, 1);
+      }
+      this.searchBasedOnLocations();
+
+      if (!this.selectedLocations.length) {
+        this.doPagination();
+      }
+    }
+    console.log("Locations selected", this.selectedLocations);
   }
 }
