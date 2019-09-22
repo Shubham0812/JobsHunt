@@ -11,7 +11,7 @@ $JobHaven-accent: mat-palette($mat-blue-grey, A200, A100, A400);
 $JobHaven-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$JobHaven-theme: mat-dark-theme(
+$JobHaven-theme: mat-light-theme(
   $JobHaven-primary,
   $JobHaven-accent,
   $JobHaven-warn

@@ -114,6 +114,9 @@
 .margin-xl {
   margin: $size-xl !important;
 }
+.margin-left-xxs{
+  margin-left: 4px !important;
+}
 .margin-left-xs {
   margin-left: $size-xs !important;
 }
@@ -175,8 +178,29 @@
   margin-right: $size-xl !important;
 }
 
+.margin-top-xxs{
+  margin-top: 4px;
+}
+
+
 .flex{
   display: flex;
+}
+
+.flex-around{
+  justify-content: space-around;
+}
+
+.flex-between{
+  justify-content: space-between;
+}
+
+.flex-middle{
+  align-content: center;
+}
+
+.flex-end{
+  justify-content: flex-end;
 }
 
 .text-bold{
@@ -189,4 +213,19 @@
 
 .justify-center{
   justify-content: center;
+}
+
+.text-white{
+  color: white;
+}
+
+.text-truncate {
+  max-width: 100%;
+  overflow: hidden !important;
+  text-overflow: clip !important;
+  white-space: nowrap !important;
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
