@@ -71,17 +71,13 @@ export class ExploreComponent implements OnInit {
       for (let i = 0; i < pages; i++) {
         this.pages.push(i + 1);
       }
-      console.log("Total pages", this.pages);
     } else if (this.filtersApplied === true) {
-      console.log("Filters pages fetch");
       this.pages = [];
-      console.log("checking filterjobs", this.filterJobs);
       const pages = Math.round(this.filterJobs.length / this.pagination);
       for (let i = 0; i < pages; i++) {
         this.pages.push(i + 1);
       }
     } else if (this.searchQuery !== "") {
-      console.log("Search query not empty");
       this.pages = [];
       const temp = this.searchJobs.length;
       const pages = Math.round(temp / this.pagination);
@@ -283,7 +279,12 @@ export class ExploreComponent implements OnInit {
     if (!this.selectedLocations.length) {
       this.filtersApplied = false;
       this.resetPages();
-      this.doPagination();
+      if (this.searchJobs.length === 0) {
+        this.doPagination();
+      } else {
+        console.log('in here')
+        this.doPaginationQuery();
+      }
     } else {
       this.searchBasedOnLocations();
     }

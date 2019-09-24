@@ -99,7 +99,6 @@
                   class="mat-chips padding-left-m padding-right-m"
                   color="primary"
                   selected
-                  (click)="removeLocations(location)"
                 >
                   {{ location }}
                   <mat-icon matChipRemove (click)="removeLocations(location)"
@@ -112,13 +111,13 @@
           <div class="flex flex-middle result">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
-              <ng-container *ngIf="searchQuery === ''">{{
+              <ng-container *ngIf="searchQuery === '' && !filtersApplied">{{
                 allJobs.length
               }}</ng-container>
               <ng-container *ngIf="searchQuery !== '' && !filtersApplied">{{
                 searchJobs.length
               }}</ng-container>
-              <ng-container *ngIf="searchQuery !== '' && filtersApplied">{{
+              <ng-container *ngIf="filtersApplied">{{
                 filterJobs.length
               }}</ng-container>
             </p>
