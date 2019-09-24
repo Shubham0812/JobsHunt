@@ -1,6 +1,5 @@
 @import "~src/styles/theme_mixins.scss";
 
-
 .container {
   background: rgb(89, 81, 219);
   background: linear-gradient(
@@ -15,19 +14,40 @@
 .heading {
   img {
     width: 500px;
+
+    @media only screen and (max-width: 544px) {
+      width: 400px;
+    }
+
+    @media only screen and (max-width: 436px) {
+      width: 300px;
+    }
+
+    @media only screen and (max-width: 345px) {
+      width: 250px;
+    }
   }
 }
 
 .grid {
   display: grid;
   grid-template-columns: 0.8fr 1fr;
+
+  @media only screen and (max-width: 772px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .information {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: -60px;
+  margin-top: 20px;
+
+  @media only screen and (max-width: 772px) {
+    margin-top: 20px;
+  }
 }
 
 .title {
@@ -50,21 +70,102 @@ button:hover {
 
 //styles for card
 
-.card-container{
-  margin-top:50px;
+.card-container {
+  margin-top: 50px;
 }
 
-mat-card{
+mat-card {
   background: none;
   border: none;
   height: 150px;
   width: 150px;
 
-  mat-icon{
+  mat-icon {
     font-size: 60px;
   }
 
-  .info-font{
+  .info-font {
     font-size: 2rem;
   }
+}
+
+.info-text {
+  margin-left: 60px;
+
+  @media only screen and (max-width: 772px) {
+    margin-left: 16px;
+  }
+}
+
+//test
+
+.hex-blocks {
+  display: flex;
+  margin-left: -30px;
+
+  @media only screen and (max-width: 1264px) {
+    flex-wrap: wrap;
+  }
+}
+
+.hex-container {
+  width: 250px;
+  text-align: center;
+}
+
+.hex-wrap {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+
+.hexagon {
+  height: 100%;
+  width: calc(100% * 0.57735);
+  display: inline-block;
+  transition: 0.5s;
+
+  mat-icon {
+    position: absolute;
+    top: 20px;
+    font-size: 40pt !important;
+    height: 48px;
+    width: 48px;
+    color: #fff;
+    left: 24px;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+.hexagon:hover {
+  background: rgba(233, 233, 233, 1.0);
+
+  mat-icon {
+    color: #3f51b5;
+  }
+}
+
+.hexagon:before {
+  position: absolute;
+  top: 0;
+  right: calc((100% / 2) - ((100% * 0.57735) / 2));
+  background-color: inherit;
+  height: inherit;
+  width: inherit;
+  content: "";
+  transform: rotateZ(60deg);
+}
+
+.hexagon:after {
+  position: absolute;
+  top: 0;
+  right: calc((100% / 2) - ((100% * 0.57735) / 2));
+  background-color: inherit;
+  height: inherit;
+  width: inherit;
+  content: "";
+  transform: rotateZ(-60deg);
 }

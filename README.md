@@ -1,27 +1,68 @@
-# JobHaven
+# JobsHunt - Job Search Portal
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.6.
+Web Page created with Angular 8, which helps the user to search and apply for jobs.
 
-## Development server
+## Motivation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was created for learning angular, the Jobs API is provided by BYJU's.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+ - Angular 8
+ - Typescript
+ - HTML5 & CSS3
+ 
+ ## Features
+ 
+ - Clean and simple user interface.
+ - Users can search jobs based on different job profiles.
+ - Users can apply filters and search jobs based on location and experience.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Code Example
 
-## Running unit tests
+    // gets the number of total pages to display
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+	getPages() {
+		this.pages = [];
+		if (this.searchQuery ===  ""  &&  this.filtersApplied ===  false) {
+			const pages = Math.round(this.allJobs.length /  this.pagination);
+			for (let i =  0; i < pages; i++) {
+				this.pages.push(i +  1);
+			}
+		} else  if (this.filtersApplied ===  true) {
+			const pages = Math.round(this.filterJobs.length /  this.pagination);
+			for (let i =  0; i < pages; i++) {
+				this.pages.push(i +  1);
+			}
 
-## Running end-to-end tests
+		} else  if (this.searchQuery !==  "") {	
+			const temp =  this.searchJobs.length;
+			const pages = Math.round(temp /  this.pagination);
+			for (let i =  0; i < pages; i++) {
+				this.pages.push(i +  1);
+			}
+		}
+	}
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The project supports Pagination and filters.
 
-## Further help
+## How to use ?
+Download the zip file or clone the project.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### Installing
+
+ - Run `npm install` to install the necessary dependencies. 
+ - Run `ng
+   serve -o`  in the terminal to run the project.
+
+#### Prerequisites
+
+- An active internet connection.
+- Node JS.
+- Modern Browser such as Edge, Chrome, Safari, Firefox.
+
+
+## Credits
+**©** **Shubham Kumar Singh** | *2019*
+

@@ -63,29 +63,26 @@ export class ExploreComponent implements OnInit {
     });
   }
 
+  // gets the number of total pages to display
   getPages() {
+    this.pages = [];
     if (this.searchQuery === "" && this.filtersApplied === false) {
-      this.pages = [];
       const pages = Math.round(this.allJobs.length / this.pagination);
-
       for (let i = 0; i < pages; i++) {
         this.pages.push(i + 1);
       }
     } else if (this.filtersApplied === true) {
-      this.pages = [];
       const pages = Math.round(this.filterJobs.length / this.pagination);
       for (let i = 0; i < pages; i++) {
         this.pages.push(i + 1);
       }
     } else if (this.searchQuery !== "") {
-      this.pages = [];
       const temp = this.searchJobs.length;
       const pages = Math.round(temp / this.pagination);
 
       for (let i = 0; i < pages; i++) {
         this.pages.push(i + 1);
       }
-      console.log("Total pages", this.pages);
     }
   }
 
@@ -282,7 +279,7 @@ export class ExploreComponent implements OnInit {
       if (this.searchJobs.length === 0) {
         this.doPagination();
       } else {
-        console.log('in here')
+        console.log("in here");
         this.doPaginationQuery();
       }
     } else {

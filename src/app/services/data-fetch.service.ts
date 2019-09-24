@@ -40,14 +40,19 @@ export class DataFetchService {
     "Chandigarh"
   ];
 
+  experiences: string[] = [];
+
   constructor(private http: HttpClient) {
     this.getJobDetails().subscribe(jobs => {
       this.jobDetails = jobs.data;
-      console.log("Check jobs", this.jobDetails);
+      // console.log("Check jobs", this.jobDetails);
       this.changeFetchState(false);
 
       this.getUniqueSources();
-      console.log("Sources", this.sources);
+      // console.log("Sources", this.sources);
+
+      this.getUniqueExperiences();
+      // console.log("Expierience", this.experiences);
     });
 
     // this.jobDetails = this.dummyData;
@@ -61,6 +66,14 @@ export class DataFetchService {
     this.jobDetails.forEach(job => {
       if (!this.sources.includes(job.source)) {
         this.sources.push(job.source);
+      }
+    });
+  }
+
+  getUniqueExperiences() {
+    this.jobDetails.forEach(job => {
+      if (!this.experiences.includes(job.experience)) {
+        this.experiences.push(job.experience);
       }
     });
   }

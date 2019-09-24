@@ -5,7 +5,9 @@
     >
       Please wait, we are fetching awesome jobs for you!
     </p>
+    <span class="line-hover"></span>
     <img class="in-up loading-image " src="./assets/banners/loading.svg" />
+    <span class="line-hover"></span>
   </div>
 </div>
 <mat-sidenav-container class="sidenav-container" autosize>
@@ -38,7 +40,7 @@
           *ngFor="let location of locations"
           class="flex flex-column"
           (change)="locationToggle($event, location)"
-          [checked] = locationsInList(location)
+          [checked]="locationsInList(location)"
         >
           <span class="flex">
             <span class="mat-h4 margin-remove-bottom margin-top-xxs">
@@ -52,7 +54,7 @@
   <mat-sidenav-content>
     <div class="margin-top-xl margin-bottom-xl margin-left-xl margin-right-xl">
       <ng-container *ngIf="!processing">
-        <div class="margin-top-l text-center">
+        <div class="margin-top-l text-center in-up">
           <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <mat-form-field
               appearance="outline"
@@ -84,7 +86,7 @@
           [ngClass]="{ 'flex-end': sideNavBarOpened }"
         >
           <div
-            class="flex flex-middle margin-left-xl"
+            class="flex flex-middle margin-left-xl in-left"
             *ngIf="!sideNavBarOpened"
           >
             <p class="margin-remove-bottom margin-top-xxs">Show Filters</p>
@@ -93,7 +95,7 @@
               (click)="toggleSidebar()"
               >filter_list</mat-icon
             >
-            <mat-chip-list class = "margin-left-s">
+            <mat-chip-list class="margin-left-s">
               <ng-container *ngFor="let location of selectedLocations">
                 <mat-chip
                   class="mat-chips padding-left-m padding-right-m"
@@ -108,7 +110,7 @@
               </ng-container>
             </mat-chip-list>
           </div>
-          <div class="flex flex-middle result">
+          <div class="flex flex-middle result in-right">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
               <ng-container *ngIf="searchQuery === '' && !filtersApplied">{{
