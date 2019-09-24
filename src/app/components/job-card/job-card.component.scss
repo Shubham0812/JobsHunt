@@ -6,6 +6,9 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  max-height: 50px;
+  overflow: hidden !important;
+  text-overflow: clip !important;
 }
 
 mat-card {
@@ -55,8 +58,10 @@ button:hover {
   }
 }
 
-// .company-name {
-//   @media only screen and (max-width: 1220px) {
-//     width: 300px;
-//   }
-// }
+.card {
+  @media only screen and (max-width: 1220px) {
+    .job-title {
+      width: 280px;
+    }
+  }
+}

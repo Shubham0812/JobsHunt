@@ -16,7 +16,7 @@ export class JobCardComponent implements OnInit {
     this.jobData.skills = this.capitalizeFirstLetter(this.jobData.skills);
     this.jobData.title = this.jobData.title.slice(0, 50);
     this.jobData.skills = this.jobData.skills.slice(0, 50);
-    this.jobData.location = this.jobData.location.slice(0, 30);
+    // this.jobData.location = this.jobData.location.slice(0, 19);
   }
 
   capitalizeFirstLetter(name: string) {
