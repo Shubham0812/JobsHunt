@@ -6,6 +6,15 @@
   // margin-top: $size-xs;
   outline: none;
   cursor: pointer;
+  font-size: 1.5rem;
+  transition: 0.5s;
+}
+
+
+.logo:hover{
+  color: #536DFE;
+  opacity: 1.5;
+  transform: scale(1.1);
 }
 
 mat-toolbar {

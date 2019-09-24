@@ -45,13 +45,7 @@ export class JobCardComponent implements OnInit {
 
   dateConverter(timestamp: number): string {
     const date = new Date(timestamp * 1000);
-    console.log(
-      date.getUTCDate() +
-        " " +
-        this.months[date.getUTCMonth()] +
-        " " +
-        date.getFullYear()
-    );
+
     return (
       date.getUTCDate() +
       " " +
