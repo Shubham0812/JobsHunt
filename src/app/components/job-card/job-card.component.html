@@ -2,7 +2,9 @@
   <div class="card-grid">
     <div class="card">
       <div class="text-truncate">
-        <p class="mat-h1 mat-primary-text primary-text margin-right-s job-title">
+        <p
+          class="mat-h1 mat-primary-text primary-text margin-right-s job-title"
+        >
           {{ jobData.title }}
         </p>
       </div>
@@ -59,7 +61,7 @@
               class="margin-remove-bottom margin-left-xs margin-top-xxs"
               *ngIf="!jobData.source"
             >
-            Anonymous
+              Anonymous
             </p>
           </div>
         </div>
@@ -99,10 +101,22 @@
         Not Disclosed
       </p>
     </div>
-    <div class="flex" style="justify-self: end">
-      <button mat-raised-button (click)="onNavigate(jobData.applylink)">
-        Apply Link
-      </button>
+    <div class="apply-grid">
+      <div class="flex margin-top-xs">
+        <mat-icon class="mat-primary-text">calendar_today</mat-icon>
+        <p
+          class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+          *ngIf="jobData.timestamp !== NaN || jobData.timestamp !== undefined"
+        >
+          Posted on {{ timeStamp }}
+        </p>
+      </div>
+
+      <div class="flex" style="justify-self: end">
+        <button mat-raised-button (click)="onNavigate(jobData.applylink)">
+          Apply Link
+        </button>
+      </div>
     </div>
   </div>
 </mat-card>

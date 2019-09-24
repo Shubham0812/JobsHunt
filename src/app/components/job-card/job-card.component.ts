@@ -8,6 +8,21 @@ import { IJobs } from "src/app/model/job-model";
 })
 export class JobCardComponent implements OnInit {
   @Input() jobData: IJobs;
+  months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+  timeStamp = "";
 
   constructor() {}
 
@@ -17,6 +32,7 @@ export class JobCardComponent implements OnInit {
     this.jobData.title = this.jobData.title.slice(0, 50);
     this.jobData.skills = this.jobData.skills.slice(0, 50);
     // this.jobData.location = this.jobData.location.slice(0, 19);
+    this.timeStamp = this.dateConverter(this.jobData.timestamp);
   }
 
   capitalizeFirstLetter(name: string) {
@@ -25,5 +41,23 @@ export class JobCardComponent implements OnInit {
 
   onNavigate(link: string) {
     window.open(link, "_blank");
+  }
+
+  dateConverter(timestamp: number): string {
+    const date = new Date(timestamp * 1000);
+    console.log(
+      date.getUTCDate() +
+        " " +
+        this.months[date.getUTCMonth()] +
+        " " +
+        date.getFullYear()
+    );
+    return (
+      date.getUTCDate() +
+      " " +
+      this.months[date.getUTCMonth()] +
+      " " +
+      date.getFullYear()
+    );
   }
 }

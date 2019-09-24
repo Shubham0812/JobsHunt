@@ -11,6 +11,12 @@
   text-overflow: clip !important;
 }
 
+.apply-grid{
+    display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
 mat-card {
   color: black;
   width: 500px;
