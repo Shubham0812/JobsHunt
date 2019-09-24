@@ -1,3 +1,6 @@
+@import "~src/styles/theme_mixins.scss";
+
+
 .container {
   background: rgb(89, 81, 219);
   background: linear-gradient(
@@ -24,7 +27,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: -48px;
+  margin-top: -60px;
 }
 
 .title {
@@ -43,4 +46,25 @@ button {
 
 button:hover {
   color: #039be5;
+}
+
+//styles for card
+
+.card-container{
+  margin-top:50px;
+}
+
+mat-card{
+  background: none;
+  border: none;
+  height: 150px;
+  width: 150px;
+
+  mat-icon{
+    font-size: 60px;
+  }
+
+  .info-font{
+    font-size: 2rem;
+  }
 }
