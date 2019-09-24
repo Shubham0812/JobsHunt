@@ -1,33 +1,48 @@
 @keyframes fadeInLeft {
-    from {
-        opacity:0;
-        transform: translatex(-40px);
-    }
-    to {
-        opacity:1;
-        transform: translatex(0);
-    }
+  from {
+    opacity: 0;
+    transform: translatex(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translatex(0);
+  }
 }
 .in-left {
-    animation-name: fadeInLeft;
-    animation-fill-mode: both;
-    animation-duration: 1s;
+  animation-name: fadeInLeft;
+  animation-fill-mode: both;
+  animation-duration: 1s;
 }
 
-
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translatex(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translatex(0);
+  }
+}
+.in-right {
+  animation-name: fadeInRight;
+  animation-fill-mode: both;
+  animation-duration: 1s;
+  transition-delay: 5s;
+}
 
 @keyframes fadeInUp {
-    from {
-        opacity:0;
-        transform: translatey(40px);
-    }
-    to {
-        opacity:1;
-        transform: translatex(0);
-    }
+  from {
+    opacity: 0;
+    transform: translatey(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translatex(0);
+  }
 }
 .in-up {
-    animation-name: fadeInUp;
-    animation-fill-mode: both;
-    animation-duration: 1s;
+  animation-name: fadeInUp;
+  animation-fill-mode: both;
+  animation-duration: 1s;
 }

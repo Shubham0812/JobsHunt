@@ -5,7 +5,7 @@
 @include mat-core();
 
 $JobHaven-primary: mat-palette($mat-indigo, 500, 50, 700);
-$JobHaven-accent: mat-palette($mat-blue-grey, A200, A100, A400);
+$JobHaven-accent: mat-palette($mat-amber, 900, 600, A200);
 
 // The warn palette is optional (defaults to red).
 $JobHaven-warn: mat-palette($mat-red);
