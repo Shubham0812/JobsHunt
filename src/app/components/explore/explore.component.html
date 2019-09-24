@@ -3,7 +3,7 @@
     <p
       class="info font-weight-500 margin-remove-bottom padding-left-m padding-right-m in-up"
     >
-      Please wait, while we are fetching awesome jobs for you!
+      Please wait, we are fetching awesome jobs for you!
     </p>
     <img class="in-up loading-image " src="./assets/banners/loading.svg" />
   </div>
@@ -15,22 +15,30 @@
     [opened]="sideNavBarOpened"
     [mode]="screenSizeIsLtMedium ? 'over' : 'side'"
   >
-    <div class="margin-top-l margin-bottom-l margin-left-m margin-right-xl">
-      <div class="flex flex-middle flex-between">
-        <p class="margin-remove-bottom margin-top-xs font-weight-500 mat-h1">
-          Filters
-        </p>
-        <button class="normal-button margin-top-xxs" (click)="toggleSidebar()">
-          <mat-icon>close</mat-icon>
-        </button>
+    <div class="">
+      <div class=" mat-primary-lite-background">
+        <div
+          class="flex flex-middle flex-between padding-top-l padding-bottom-l padding-left-l padding-right-xl"
+        >
+          <p class="margin-remove-bottom margin-top-xs font-weight-500 mat-h1">
+            Filters
+          </p>
+          <button
+            class="normal-button margin-top-xxs"
+            (click)="toggleSidebar()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
       </div>
-      <div class="margin-top-xl">
+      <div class="margin-top-xl padding-left-l">
         <p class="font-weight-bold mat-primary-text mat-h2">Location</p>
 
         <mat-checkbox
           *ngFor="let location of locations"
           class="flex flex-column"
           (change)="locationToggle($event, location)"
+          [checked] = locationsInList(location)
         >
           <span class="flex">
             <span class="mat-h4 margin-remove-bottom margin-top-xxs">
@@ -85,28 +93,47 @@
               (click)="toggleSidebar()"
               >filter_list</mat-icon
             >
+            <mat-chip-list class = "margin-left-s">
+              <ng-container *ngFor="let location of selectedLocations">
+                <mat-chip
+                  class="mat-chips padding-left-m padding-right-m"
+                  color="primary"
+                  selected
+                  (click)="removeLocations(location)"
+                >
+                  {{ location }}
+                  <mat-icon matChipRemove (click)="removeLocations(location)"
+                    >cancel</mat-icon
+                  >
+                </mat-chip>
+              </ng-container>
+            </mat-chip-list>
           </div>
           <div class="flex flex-middle result">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
-              <ng-container *ngIf="this.searchQuery === ''">{{
+              <ng-container *ngIf="searchQuery === ''">{{
                 allJobs.length
               }}</ng-container>
-              <ng-container *ngIf="this.searchQuery !== ''">{{
+              <ng-container *ngIf="searchQuery !== '' && !filtersApplied">{{
                 searchJobs.length
+              }}</ng-container>
+              <ng-container *ngIf="searchQuery !== '' && filtersApplied">{{
+                filterJobs.length
               }}</ng-container>
             </p>
             <mat-form-field appearance="outline">
               <mat-label>Select a value</mat-label>
-              <mat-select
-                (selectionChange)="optionChanged($event.value)"
-                [(value)]="pagination"
-                [value]="pagination"
-              >
-                <mat-option value="30">30</mat-option>
-                <mat-option value="50">50</mat-option>
-                <mat-option value="80">80</mat-option>
-              </mat-select>
+              <form [formGroup]="optionForm" (ngSubmit)="onSubmit()">
+                <mat-select
+                  (selectionChange)="optionChanged($event.value)"
+                  value="pagination"
+                >
+                  <mat-option value="30">30</mat-option>
+                  <mat-option value="50">50</mat-option>
+                  <mat-option value="80">80</mat-option>
+                </mat-select>
+              </form>
             </mat-form-field>
           </div>
         </div>
@@ -128,7 +155,10 @@
           class="margin-left-xl margin-right-xl margin-top-m margin-bottom-m flex flex-middle justify-center"
         >
           <div class="flex justify-center" *ngIf="!noData">
-            <p class="margin-remove-bottom margin-top-m font-weight-500">
+            <p
+              class="margin-remove-bottom margin-top-m font-weight-500"
+              *ngIf="pages.length !== 0"
+            >
               Page
             </p>
             <div class="margin-left-m margin-right-m">
@@ -141,10 +171,24 @@
                   }"
                   (click)="pageChanged(page)"
                 >
-                  <p class = "margin-remove-bottom margin-remove-top mat-h3">{{ page }}</p>
+                  <p class="margin-remove-bottom margin-remove-top mat-h3">
+                    {{ page }}
+                  </p>
                 </button>
               </ng-container>
-              <ng-container *ngIf="searchQuery !== ''">
+              <ng-container *ngIf="searchQuery !== '' && !filtersApplied">
+                <button
+                  class="page-button "
+                  *ngFor="let page of pages"
+                  [ngClass]="{
+                    'mat-primary-text font-weight-bold': page === selectedPage
+                  }"
+                  (click)="pageChanged(page)"
+                >
+                  {{ page }}
+                </button>
+              </ng-container>
+              <ng-container *ngIf="searchQuery !== '' && filtersApplied">
                 <button
                   class="page-button "
                   *ngFor="let page of pages"
