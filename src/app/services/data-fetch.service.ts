@@ -17,6 +17,7 @@ export class DataFetchService {
   currentState = this.loading.asObservable();
   currentJobFetch = this.dataFetching.asObservable();
 
+  // Since the locations provided in the JSON were too random and contained long strings, have hardcoded common locations.
   locations: string[] = [
     "Bengaluru",
     "Chennai",
@@ -25,18 +26,18 @@ export class DataFetchService {
     "Bhopal",
     "Hyderabad",
     "Guntur",
-    "Ahemdabad",
+    "Ahmedabad",
     "Indore",
     "Panaji",
     "Delhi",
-    'Pune',
-    'Jaipur',
-    'Patna',
-    'Hosur',
-    'Mysore',
-    'Kolkata',
-    'Guragaon',
-    'Chandigarh'
+    "Pune",
+    "Jaipur",
+    "Patna",
+    "Hosur",
+    "Mysore",
+    "Kolkata",
+    "Gurgaon",
+    "Chandigarh"
   ];
 
   constructor(private http: HttpClient) {
