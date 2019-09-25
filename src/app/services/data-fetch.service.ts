@@ -43,17 +43,22 @@ export class DataFetchService {
   experiences: string[] = [];
 
   constructor(private http: HttpClient) {
-    this.getJobDetails().subscribe(jobs => {
-      this.jobDetails = jobs.data;
-      // console.log("Check jobs", this.jobDetails);
-      this.changeFetchState(false);
+    this.getJobDetails().subscribe(
+      jobs => {
+        this.jobDetails = jobs.data;
+        // console.log("Check jobs", this.jobDetails);
+        this.changeFetchState(false);
 
-      this.getUniqueSources();
-      // console.log("Sources", this.sources);
+        this.getUniqueSources();
+        // console.log("Sources", this.sources);
 
-      this.getUniqueExperiences();
-      // console.log("Expierience", this.experiences);
-    });
+        this.getUniqueExperiences();
+        // console.log("Expierience", this.experiences);
+      },
+      err => {
+        console.log("error");
+      }
+    );
 
     // this.jobDetails = this.dummyData;
   }

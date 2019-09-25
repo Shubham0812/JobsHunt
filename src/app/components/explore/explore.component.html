@@ -5,7 +5,7 @@
     >
       Please wait, we are fetching awesome jobs for you!
     </p>
-    <span class="line-hover"></span>
+    <span class="line-hover-right"></span>
     <img class="in-up loading-image " src="./assets/banners/loading.svg" />
     <span class="line-hover"></span>
   </div>
@@ -168,7 +168,7 @@
                   class="page-button padding-xs"
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text font-weight-bold': page === selectedPage
+                    'mat-primary-text text-bold': page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >
@@ -179,10 +179,10 @@
               </ng-container>
               <ng-container *ngIf="searchQuery !== '' && !filtersApplied">
                 <button
-                  class="page-button "
+                  class="page-button mat-primary-border "
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text font-weight-bold': page === selectedPage
+                    'mat-primary-text text-bold': page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >
@@ -194,7 +194,7 @@
                   class="page-button "
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text font-weight-bold': page === selectedPage
+                    'mat-primary-text text-bold': page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >

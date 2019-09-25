@@ -47,7 +47,6 @@
   animation-duration: 1s;
 }
 
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -64,29 +63,64 @@
   animation-duration: 1s;
 }
 
+.line-hover {
+  height: 5px;
+  width: 50px;
+  background: #3f51bf;
+  position: fixed;
+  margin-top: 10px;
+  border-radius: 2px 10px 1px 0;
+  animation: fazer1 1s linear infinite;
+}
 
+.line-hover-right {
+  height: 5px;
+  width: 50px;
+  background: #3f51bf;
+  position: fixed;
+  margin-top: 10px;
+  border-radius: 2px 10px 1px 0;
+  animation: fazer2 1s linear infinite;
+}
 
-
-.line-hover{
-    height: 5px;
-    width: 50px;
-    background: #fff;
-    // position: absolute;
-    // top: -19px;
-    // left: 60px;
-    position: fixed;
-    margin-top: 10px;
-    border-radius: 2px 10px 1px 0;
-      animation: fazer1 1s linear infinite;
+.line-hover-white {
+  height: 5px;
+  width: 50px;
+  background: #fff;
+  position: fixed;
+  margin-top: 10px;
+  border-radius: 2px 10px 1px 0;
+  animation: fazer1 1s linear infinite;
 }
 
 
+
+.line-hover-right-white {
+  height: 5px;
+  width: 50px;
+  background: #fff;
+  position: fixed;
+  margin-top: 10px;
+  border-radius: 2px 10px 1px 0;
+  animation: fazer2 1s linear infinite;
+}
+
 @keyframes fazer1 {
   0% {
-    left: 100%
+    left: 100%;
   }
   100% {
     left: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes fazer2 {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: 0%;
     opacity: 0;
   }
 }
