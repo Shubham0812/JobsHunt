@@ -14,8 +14,10 @@ export class DataFetchService {
   sources: string[] = [];
   private loading = new BehaviorSubject(false);
   private dataFetching = new BehaviorSubject(true);
+  private errorLoading = new BehaviorSubject(false);
   currentState = this.loading.asObservable();
   currentJobFetch = this.dataFetching.asObservable();
+  currentErrorState = this.errorLoading.asObservable();
 
   // Since the locations provided in the JSON were too random and contained long strings, have hardcoded common locations.
   locations: string[] = [
@@ -40,7 +42,13 @@ export class DataFetchService {
     "Chandigarh"
   ];
 
-  experiences: string[] = [];
+  experiences: string[] = [
+    "Freshers",
+    "1-2 Year",
+    "3-5 Year",
+    "5-8 Year",
+    "8+ Year"
+  ];
 
   constructor(private http: HttpClient) {
     this.getJobDetails().subscribe(
@@ -51,12 +59,9 @@ export class DataFetchService {
 
         this.getUniqueSources();
         // console.log("Sources", this.sources);
-
-        this.getUniqueExperiences();
-        // console.log("Expierience", this.experiences);
       },
       err => {
-        console.log("error");
+        this.changeErrorState(true);
       }
     );
 
@@ -71,14 +76,6 @@ export class DataFetchService {
     this.jobDetails.forEach(job => {
       if (!this.sources.includes(job.source)) {
         this.sources.push(job.source);
-      }
-    });
-  }
-
-  getUniqueExperiences() {
-    this.jobDetails.forEach(job => {
-      if (!this.experiences.includes(job.experience)) {
-        this.experiences.push(job.experience);
       }
     });
   }
@@ -113,6 +110,10 @@ export class DataFetchService {
 
   changeFetchState(state: boolean) {
     this.dataFetching.next(state);
+  }
+
+  changeErrorState(state: boolean) {
+    this.errorLoading.next(state);
   }
 
   getJobs() {
