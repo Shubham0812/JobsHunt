@@ -26,7 +26,12 @@ body {
   margin: 0;
   color: black;
   font-family: "Montserrat", sans-serif !important;
-  background: rgba(233, 233, 233, 1);
+  background: rgb(89, 81, 219);
+  background: linear-gradient(
+    21deg,
+    rgba(89, 81, 219, 1) 0%,
+    rgba(0, 234, 255, 1) 80%
+  );
 }
 
 .mat-card {
