@@ -34,20 +34,52 @@
         </div>
       </div>
       <div class="margin-top-xl padding-left-l">
-        <p class="font-weight-bold mat-primary-text mat-h2">Location</p>
-
-        <mat-checkbox
-          *ngFor="let location of locations"
-          class="flex flex-column"
-          (change)="locationToggle($event, location)"
-          [checked]="locationsInList(location)"
-        >
-          <span class="flex">
-            <span class="mat-h4 margin-remove-bottom margin-top-xxs">
-              {{ location }}
+        <div class="flex flex-between">
+          <p class="font-weight-bold mat-primary-text mat-h2">Location</p>
+          <mat-icon
+            class="mat-primary-text large-button margin-right6 cursor-pointer"
+            [ngClass]="{ 'tree-open': collapseLocation }"
+            (click)="toggleTree()"
+            >keyboard_arrow_down</mat-icon
+          >
+        </div>
+        <ng-container *ngIf="!collapseLocation">
+          <mat-checkbox
+            *ngFor="let location of locations"
+            class="flex flex-column margin-top-xxs tree-toggle"
+            (change)="locationToggle($event, location)"
+            [checked]="locationsInList(location)"
+          >
+            <span class="flex">
+              <span class="mat-h4 margin-remove-bottom ">
+                {{ location }}
+              </span>
             </span>
-          </span>
-        </mat-checkbox>
+          </mat-checkbox>
+        </ng-container>
+        <div class="flex flex-between">
+          <p class="font-weight-bold mat-primary-text mat-h2">Experience</p>
+          <mat-icon
+            class="mat-primary-text large-button margin-right6 cursor-pointer"
+            [ngClass]="{ 'tree-open': collaspseExperience }"
+            (click)="toggleExperienceTree()"
+            >keyboard_arrow_down</mat-icon
+          >
+        </div>
+        <ng-container *ngIf="!collaspseExperience">
+          <mat-checkbox
+            *ngFor="let experience of experiences"
+            class="flex flex-column margin-top-xxs tree-toggle"
+            (change)="locationToggle($event, location)"
+            [checked]="locationsInList(location)"
+          >
+            <span class="flex">
+              <span class="mat-h4 margin-remove-bottom ">
+                {{ experience }}
+              </span>
+            </span>
+          </mat-checkbox>
+        </ng-container>
       </div>
     </div>
   </mat-sidenav>
@@ -110,7 +142,7 @@
               </ng-container>
             </mat-chip-list>
           </div>
-          <div class="flex flex-middle result in-right">
+          <div class="flex flex-middle result in-right" *ngIf="!errorData">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
               <ng-container *ngIf="searchQuery === '' && !filtersApplied">{{
@@ -139,10 +171,22 @@
           </div>
         </div>
         <div class=" no-data" *ngIf="noData">
-          <p class="mat-h1 mat-primary-text secondayyTypography margin-top-xl">
+          <p class="mat-h1 mat-primary-text secondayyTypography margin-up4">
             Please check the search query
           </p>
           <img class="in-left " src="./assets/banners/no-data.svg" />
+        </div>
+        <div class=" no-data" *ngIf="noSearchResult">
+          <p class="mat-h1 mat-primary-text secondayyTypography margin-up4">
+            No data for the search
+          </p>
+          <img class="in-left " src="./assets/banners/no-result.svg" />
+        </div>
+        <div class=" no-data" *ngIf="errorData">
+          <p class="mat-h1 mat-primary-text secondayyTypography margin-up4">
+            Check your internet connection or try after a while
+          </p>
+          <img class="in-left " src="./assets/banners/server.svg" />
         </div>
         <div class="container">
           <ng-container *ngIf="!noData">
@@ -152,23 +196,16 @@
             ></app-job-card>
           </ng-container>
         </div>
-        <div
-          class="margin-left-xl margin-right-xl margin-top-m margin-bottom-m flex flex-middle justify-center"
-        >
-          <div class="flex justify-center" *ngIf="!noData">
-            <p
-              class="margin-remove-bottom margin-top-m font-weight-500"
-              *ngIf="pages.length !== 0"
-            >
-              Page
-            </p>
-            <div class="margin-left-m margin-right-m">
+        <ng-container *ngIf="!errorData">
+          <app-horizontal-scroll>
+            <div class="flex justify-center">
               <ng-container *ngIf="searchQuery === ''">
                 <button
                   class="page-button padding-xs"
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text text-bold': page === selectedPage
+                    'mat-accent-text mat-accent-text text-bold accent-border':
+                      page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >
@@ -179,10 +216,11 @@
               </ng-container>
               <ng-container *ngIf="searchQuery !== '' && !filtersApplied">
                 <button
-                  class="page-button mat-primary-border "
+                  class="page-button padding-xs"
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text text-bold': page === selectedPage
+                    'mat-accent-text mat-accent-text text-bold accent-border':
+                      page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >
@@ -191,10 +229,11 @@
               </ng-container>
               <ng-container *ngIf="searchQuery !== '' && filtersApplied">
                 <button
-                  class="page-button "
+                  class="page-button padding-xs"
                   *ngFor="let page of pages"
                   [ngClass]="{
-                    'mat-primary-text text-bold': page === selectedPage
+                    'mat-accent-text mat-accent-text text-bold accent-border':
+                      page === selectedPage
                   }"
                   (click)="pageChanged(page)"
                 >
@@ -202,8 +241,8 @@
                 </button>
               </ng-container>
             </div>
-          </div>
-        </div>
+          </app-horizontal-scroll>
+        </ng-container>
       </ng-container>
     </div>
   </mat-sidenav-content>

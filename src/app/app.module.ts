@@ -27,7 +27,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { HomeComponent } from "./components/home/home.component";
 import { ExploreComponent } from "./components/explore/explore.component";
 import { JobCardComponent } from "./components/job-card/job-card.component";
-
+import { HorizontalScrollModule } from "./utils/horizontal-scroll/horizontal-scroll.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +40,7 @@ import { JobCardComponent } from "./components/job-card/job-card.component";
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    HorizontalScrollModule,
     MatToolbarModule,
     MatButtonModule,
     MatProgressBarModule,

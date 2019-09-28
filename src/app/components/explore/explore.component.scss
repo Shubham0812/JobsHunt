@@ -130,6 +130,14 @@
   margin-left: 4rem;
 }
 
+.margin-up4 {
+  margin-top: 6rem;
+}
+
+.margin-right6 {
+  margin-right: 5rem;
+}
+
 .flex-b {
   justify-content: space-between;
 }
@@ -139,9 +147,9 @@
 }
 
 .page-button {
-  width: 38px;
-  height: 44px;
-  margin: 8px 4px;
+  width: 42px;
+  height: 42px;
+  margin: 8px 8px;
   cursor: pointer;
   background: none;
   outline: none;
@@ -150,7 +158,7 @@
   transition: 0.4s;
 }
 
-.page-button:hover{
+.page-button:hover {
   background: #3f51b5;
   color: #fff;
 }
@@ -167,5 +175,33 @@
   @media only screen and (max-width: 650px) {
     width: 300px;
     height: 300px;
+  }
+}
+
+.large-button {
+  margin-top: 6px;
+  width: 24px;
+  font-size: 24px;
+  height: 24px;
+  transition: 100ms linear;
+  outline: none;
+}
+
+.tree-open {
+  transform: rotate(-90deg);
+}
+
+.tree-toggle {
+  animation: collapsible 0.4s linear 1;
+}
+
+@keyframes collapsible {
+  from {
+    transform: translateY(-10px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 1;
   }
 }
