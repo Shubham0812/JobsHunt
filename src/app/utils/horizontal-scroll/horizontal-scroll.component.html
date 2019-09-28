@@ -1,0 +1,11 @@
+<div class="card-container">
+  <button class="previous-button" (click)="scrollLeft()" *ngIf="!disablePrev">
+    <mat-icon aria-label="Previous" role="button">navigate_before</mat-icon>
+  </button>
+  <div class="card-holder" #cardContents>
+    <ng-content></ng-content>
+  </div>
+  <button class="next-button" (click)="scrollRight()" *ngIf="!disableNext">
+    <mat-icon aria-label="Next" role="button">navigate_next</mat-icon>
+  </button>
+</div>

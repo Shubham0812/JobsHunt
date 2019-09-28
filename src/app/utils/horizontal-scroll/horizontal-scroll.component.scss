@@ -1,0 +1,82 @@
+@import "../../../styles/vars.scss";
+
+.card-container {
+  position: relative;
+  min-height: 100px;
+  margin: 0 $size-l;
+  z-index: 1;
+  // width: 400px;
+  margin-left: 260px;
+  margin-right: 260px;
+
+  @media only screen and (max-width: 900px) {
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+    @media only screen and (max-width: 715px) {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+      @media only screen and (max-width: 520px) {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+}
+
+.card-holder {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  //  padding: 0 $size-m;
+  position: relative;
+}
+
+.card-holder::-webkit-scrollbar {
+  display: none;
+}
+
+.next-button {
+  position: absolute;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  top: 40%;
+  vertical-align: middle;
+  color: black;
+  background: none;
+  border: none;
+  outline: none;
+  transform: translate3d(100%, -72%, 0);
+}
+
+.previous-button {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  top: 40%;
+  z-index: 2;
+  vertical-align: middle;
+  color: black;
+  background: none;
+  border: none;
+  outline: none;
+  transform: translate3d(-100%, -72%, 0);
+}
+
+.mat-icon {
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box !important;
+  stroke: none;
+}
