@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/JobHaven",
+            "outputPath": "dist/JobsHunt",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "JobHaven:build"
+            "browserTarget": "JobsHunt:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "JobHaven:build:production"
+              "browserTarget": "JobsHunt:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "JobHaven:build"
+            "browserTarget": "JobsHunt:build"
           }
         },
         "test": {
@@ -114,11 +114,11 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "JobHaven:serve:production"
+              "devServerTarget": "JobsHunt:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "JobHaven"
+  "defaultProject": "JobsHunt"
 }
