@@ -65,6 +65,7 @@ export class HorizontalScrollComponent implements OnInit, OnDestroy {
   }
 
   updateNavigationButtonStatus(element: HTMLElement) {
+    console.log("element scroll", element.scrollWidth, element.clientWidth);
     if (element.scrollWidth > element.clientWidth) {
       this.disableNext = false;
     } else {

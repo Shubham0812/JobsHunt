@@ -44,10 +44,10 @@ export class DataFetchService {
 
   experiences: string[] = [
     "Freshers",
-    "1-2 Year",
-    "3-5 Year",
-    "5-8 Year",
-    "8+ Year"
+    "1-2 Years",
+    "3-5 Years",
+    "5-8 Years",
+    "8+ Years"
   ];
 
   constructor(private http: HttpClient) {
@@ -55,6 +55,9 @@ export class DataFetchService {
       jobs => {
         this.jobDetails = jobs.data;
         // console.log("Check jobs", this.jobDetails);
+        this.jobDetails.forEach(job => {
+          job = this.changeExperience(job);
+        });
         this.changeFetchState(false);
 
         this.getUniqueSources();
@@ -66,6 +69,13 @@ export class DataFetchService {
     );
 
     // this.jobDetails = this.dummyData;
+  }
+
+  changeExperience(job: IJobs): IJobs {
+    if (!job.experience || job.experience.split("-")[0].charAt(0) === "0") {
+      job.experience = "Freshers";
+    }
+    return job;
   }
 
   getJobDetails(): Observable<any> {

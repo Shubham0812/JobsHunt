@@ -54,6 +54,7 @@ export class ExploreComponent implements OnInit {
     this.optionForm = this.formBuilder.group({
       select: [""]
     });
+
     this.optionForm.controls.select.setValue("30");
     this.optionForm.markAsPristine();
     this.optionForm.markAsUntouched();
@@ -109,11 +110,15 @@ export class ExploreComponent implements OnInit {
     this.jobs = [];
     this.pagination = Number(val);
     this.selectedPage = 1;
-    if (this.searchQuery === "") {
+    if (this.searchQuery === "" && !this.filtersApplied) {
       this.pageStart = 0;
       this.pageEnd = this.pagination - 1;
       this.getPages();
       this.doPagination();
+    } else if (this.filtersApplied === true) {
+      this.resetPages();
+      this.doPaginationLocation();
+      this.getPages();
     } else {
       this.pageStart = 0;
       this.pageEnd = this.pagination - 1;
@@ -155,11 +160,30 @@ export class ExploreComponent implements OnInit {
   }
 
   doPaginationLocation() {
+    console.log("goin for this", this.filterJobs, this.jobs);
     this.filtersApplied = true;
     if (this.filterJobs.length === 0) {
       this.filterJobs = Array.from(this.jobs);
       this.jobs = this.jobs.splice(this.pageStart, this.pageEnd + 1);
     } else if (this.selectedLocations.length >= 1) {
+      if (this.searchForm.controls.search.value === "") {
+        this.jobs = [];
+        this.filterJobs = [];
+        this.searchBasedOnLocations();
+      } else {
+        this.count = 0;
+        if (this.filterJobs.length === 0) {
+          this.filterJobs = Array.from(this.jobs);
+        }
+        this.jobs = [];
+        this.filterJobs.forEach(job => {
+          if (this.count >= this.pageStart && this.count <= this.pageEnd) {
+            this.jobs.push(job);
+          }
+          this.count += 1;
+        });
+      }
+    } else if (this.selectedExperiences.length >= 1) {
       if (this.searchForm.controls.search.value === "") {
         this.jobs = [];
         this.filterJobs = [];
@@ -250,8 +274,8 @@ export class ExploreComponent implements OnInit {
       this.getPages();
       this.processing = false;
     } else if (this.searchQuery === "" && this.filtersApplied === true) {
-      // console.log("Check existing filter data", this.filterJobs);
       this.jobs = [];
+      this.filtersApplied = true;
       this.searchBasedOnLocations();
       this.getPages();
     } else {
@@ -269,7 +293,6 @@ export class ExploreComponent implements OnInit {
     this.selectedPage = 1;
     this.processing = true;
     if (this.searchJobs.length) {
-      // console.log("search from searchJobs");
       this.jobs = [];
       this.selectedLocations.forEach(loc => {
         this.searchJobs.forEach(job => {
@@ -278,18 +301,70 @@ export class ExploreComponent implements OnInit {
           }
         });
       });
-      // console.log("Check jobs", this.jobs);
+      this.selectedExperiences.forEach(exp => {
+        this.allJobs.forEach(job => {
+          const expStart = Number(job.experience.split("-")[0]);
+          // console.log(expStart, job);
+          if (!Number.isNaN(expStart)) {
+            let expEnd = Number(job.experience.split("-")[1].charAt(0));
+            expEnd = expEnd !== 0 ? expEnd : 3;
+            if (exp === "8+ Years") {
+              if (expStart >= Number(exp.split("-")[0].charAt(0))) {
+                this.jobs.push(job);
+              }
+            } else if (
+              expStart <= Number(exp.split("-")[0].charAt(0)) &&
+              expEnd >= Number(exp.split("-")[1].charAt(0))
+            ) {
+              this.jobs.push(job);
+            }
+          } else if (job.experience.toLowerCase().includes(exp.toLowerCase())) {
+            this.jobs.push(job);
+          }
+        });
+      });
+      console.log("Check jobs", this.jobs);
       if (!this.jobs.length) {
         this.noSearchResult = true;
       }
       this.doPaginationLocation();
       this.getPages();
     } else {
-      // console.log("Location Search, no query");
+      console.log("filter Search, no query");
       this.jobs = [];
       this.selectedLocations.forEach(loc => {
         this.allJobs.forEach(job => {
           if (job.location.toLowerCase().includes(loc.toLowerCase())) {
+            this.jobs.push(job);
+          }
+        });
+      });
+      this.selectedExperiences.forEach(exp => {
+        this.allJobs.forEach(job => {
+          const expStart = Number(job.experience.split("-")[0]);
+          // console.log(expStart, job);
+          if (!Number.isNaN(expStart)) {
+            let expEnd = Number(job.experience.split("-")[1].charAt(0));
+            expEnd = expEnd !== 0 ? expEnd : 3;
+            if (exp === "8+ Years") {
+              if (
+                expStart >= Number(exp.split("-")[0].charAt(0)) &&
+                !this.jobs.includes(job)
+              ) {
+                console.log("ADding job for the job", job);
+                this.jobs.push(job);
+              }
+            } else if (
+              expStart <= Number(exp.split("-")[0].charAt(0)) &&
+              expEnd >= Number(exp.split("-")[1].charAt(0)) &&
+              !this.jobs.includes(job)
+            ) {
+              this.jobs.push(job);
+            }
+          } else if (
+            job.experience.toLowerCase().includes(exp.toLowerCase()) &&
+            !this.jobs.includes(job)
+          ) {
             this.jobs.push(job);
           }
         });
@@ -311,6 +386,22 @@ export class ExploreComponent implements OnInit {
     } else {
       // console.log("removing");
       this.removeLocations(location);
+    }
+    this.processing = false;
+  }
+
+  experienceToggle(event: any, experience: string) {
+    this.jobs = [];
+    if (
+      event.checked === true &&
+      !this.selectedExperiences.includes(experience)
+    ) {
+      this.selectedExperiences.push(experience);
+      this.filterJobs = [];
+      this.searchBasedOnLocations();
+      console.log("Experience toggled", experience);
+    } else {
+      this.removeExperiencess(experience);
     }
     // console.log("Locations selected", this.selectedLocations);
     this.processing = false;
@@ -349,6 +440,39 @@ export class ExploreComponent implements OnInit {
     }
   }
 
+  removeExperiencess(location: string) {
+    const index = this.selectedExperiences.indexOf(location);
+    if (index > -1) {
+      this.selectedExperiences.splice(index, 1);
+      this.resetPages();
+      this.noSearchResult = false;
+    }
+    if (!this.selectedExperiences.length) {
+      this.searchQuery = this.searchForm.controls.search.value.toLowerCase();
+      // console.log("hmm empty location");
+      this.searchJobs = [];
+      this.filtersApplied = false;
+      this.resetPages();
+      if (this.searchQuery !== "") {
+        this.resetPages();
+        this.noData = false;
+        this.jobs = [];
+        this.searchBasedOnJob();
+        this.doPaginationQuery();
+      } else if (this.searchJobs.length === 0) {
+        this.searchForm.controls.search.setValue("");
+
+        this.doPagination();
+      } else {
+        console.log("in here");
+        this.jobs = [];
+        this.doPaginationQuery();
+      }
+    } else {
+      this.searchBasedOnLocations();
+    }
+  }
+
   resetPages() {
     this.selectedPage = 1;
     this.pageStart = 0;
@@ -358,6 +482,14 @@ export class ExploreComponent implements OnInit {
 
   locationsInList(location: string): boolean {
     if (this.selectedLocations.includes(location)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  experiencesInList(experience: string): boolean {
+    if (this.selectedExperiences.includes(experience)) {
       return true;
     } else {
       return false;

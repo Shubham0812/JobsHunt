@@ -70,8 +70,8 @@
           <mat-checkbox
             *ngFor="let experience of experiences"
             class="flex flex-column margin-top-xxs tree-toggle"
-            (change)="locationToggle($event, location)"
-            [checked]="locationsInList(location)"
+            (change)="experienceToggle($event, experience)"
+            [checked]="experiencesInList(experience)"
           >
             <span class="flex">
               <span class="mat-h4 margin-remove-bottom ">
@@ -136,6 +136,22 @@
                 >
                   {{ location }}
                   <mat-icon matChipRemove (click)="removeLocations(location)"
+                    >cancel</mat-icon
+                  >
+                </mat-chip>
+              </ng-container>
+            </mat-chip-list>
+            <mat-chip-list class="margin-left-s">
+              <ng-container *ngFor="let experience of selectedExperiences">
+                <mat-chip
+                  class="mat-chips padding-left-m padding-right-m"
+                  color="primary"
+                  selected
+                >
+                  {{ experience }}
+                  <mat-icon
+                    matChipRemove
+                    (click)="removeExperiencess(experience)"
                     >cancel</mat-icon
                   >
                 </mat-chip>
