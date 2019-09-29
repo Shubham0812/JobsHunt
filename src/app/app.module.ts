@@ -19,7 +19,7 @@ import {
   MatInputModule,
   MatSidenavModule,
   MatCheckboxModule,
-  MatChipsModule
+  MatChipsModule,
 } from "@angular/material";
 
 import { MatTabsModule } from "@angular/material/tabs";
