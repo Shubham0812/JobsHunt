@@ -58,10 +58,13 @@
   margin-bottom: 32px;
 }
 
-button {
+.start-button {
   transition: 0.5s;
-
   padding: 4px;
+
+  @media only screen and (max-width: 472px) {
+    margin-top: 2rem !important;
+  }
 }
 
 button:hover {
@@ -92,12 +95,14 @@ mat-card {
 .info-text {
   margin-left: 60px;
 
+  //   @media only screen and (max-width: 1024px) {
+  // margin-left: 50px;
+  // }
+
   @media only screen and (max-width: 772px) {
     margin-left: 16px;
   }
 }
-
-//test
 
 .hex-blocks {
   display: flex;
@@ -106,11 +111,36 @@ mat-card {
   @media only screen and (max-width: 1264px) {
     flex-wrap: wrap;
   }
+
+  // @media only screen and (max-width: 440px) {
+  //   justify-content: center;
+  // }
 }
 
 .hex-container {
   width: 250px;
   text-align: center;
+
+  @media only screen and (max-width: 1033px) {
+    width: 240px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 200px;
+  }
+
+  @media only screen and (max-width: 635px) {
+    width: 180px;
+  }
+}
+
+.small-hex-container {
+  display: flex;
+  // flex-wrap: wrap;
+  margin: 32px 0;
+  @media only screen and (max-width: 380px) {
+    margin-left: -20px;
+  }
 }
 
 .hex-wrap {
@@ -120,6 +150,32 @@ mat-card {
   width: 100px;
   height: 100px;
 }
+
+.small-hex-wrap {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0 50px;
+
+  @media only screen and (max-width: 480px) {
+    margin: 0 30px;
+  }
+    @media only screen and (max-width: 359px) {
+    margin: 0 20px;
+  }
+}
+
+.small-hex-wrap:first-child {
+  margin-left: 16px;
+}
+
+// .small-hex-wrap:last-child{
+//     @media only screen and (max-width: 380px) {
+//     margin-top: 60px;
+//   }
+// }
 
 .hexagon {
   height: 100%;
@@ -141,7 +197,7 @@ mat-card {
 }
 
 .hexagon:hover {
-  background: rgba(233, 233, 233, 1.0);
+  background: rgba(233, 233, 233, 1);
 
   mat-icon {
     color: #3f51b5;
@@ -168,4 +224,44 @@ mat-card {
   width: inherit;
   content: "";
   transform: rotateZ(-60deg);
+}
+
+.small-hexagon {
+  position: relative;
+  width: 80px;
+  height: 46.19px;
+  margin: 23.09px 0;
+
+  mat-icon {
+    position: absolute;
+    font-size: 40pt !important;
+    height: 48px;
+    left: 14px;
+    width: 48px;
+    bottom: 2px;
+    color: #fff;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+.small-hexagon:before,
+.small-hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  right: calc((100% / 2) - ((100% * 0.5)));
+}
+
+.small-hexagon:before {
+  bottom: 100%;
+  border-bottom: 23.09px solid #3f51b5;
+}
+
+.small-hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 23.09px solid #3f51b5;
 }

@@ -1,15 +1,21 @@
 <div class="bg-pan">
-  <div class="heading margin-left-xl grid padding-top-l padding-bottom-xl">
+  <div
+    class="heading margin-left-xl margin-right-xl grid padding-top-l padding-bottom-xl"
+  >
     <img class="margin-top-xs in-left " src="./assets/banners/home.svg" />
     <div class="information">
-      <div class = "info-text">
-      <p class="title in-up">Find jobs and get placed</p>
-      <p class="mat-h1 in-up">It's simple, we will help you all the way</p>
-      <p class="in-up margin-top-xl ">
-        <button mat-raised-button (click)="searchJobs()" class = "mat-primary-background" >
-          <span style="padding:8px">Let's Get Started!</span>
-        </button>
-      </p>
+      <div class="info-text">
+        <p class="title in-up">Find jobs and get placed</p>
+        <p class="mat-h1 in-up">It's simple, we will help you all the way</p>
+        <p class="in-up margin-top-xl start-button ">
+          <button
+            mat-raised-button
+            (click)="searchJobs()"
+            class="mat-primary-background"
+          >
+            <span style="padding:8px">Let's Get Started!</span>
+          </button>
+        </p>
       </div>
       <!-- <div class="flex card-container">
         <mat-card>
@@ -22,7 +28,7 @@
         </mat-card>
       </div> -->
 
-      <div class="hex-blocks margin-top-xl">
+      <div class="hex-blocks margin-top-xl" *ngIf="!displayFeatures">
         <div class="hex-container">
           <div class="hex-wrap  margin-top-l  in-right">
             <div class="hexagon mat-primary-background">
@@ -73,6 +79,23 @@
           >
             Get jobs based on your skills
           </p>
+        </div>
+      </div>
+      <div class="small-hex-container" *ngIf="displayFeatures">
+        <div class="small-hex-wrap in-right" matTooltip = "Fast">
+          <div class="small-hexagon mat-primary-background">
+            <mat-icon style="font-size: 34px">speed</mat-icon>
+          </div>
+        </div>
+        <div class="small-hex-wrap in-right" matTooltip = "Simple">
+          <div class="small-hexagon mat-primary-background">
+            <mat-icon style="font-size: 34px">highlight</mat-icon>
+          </div>
+        </div>
+        <div class="small-hex-wrap in-right" matTooltip = "Intuitive"> 
+          <div class="small-hexagon mat-primary-background">
+            <mat-icon style="font-size: 34px">speed</mat-icon>
+          </div>
         </div>
       </div>
     </div>
