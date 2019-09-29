@@ -171,9 +171,9 @@
                 filterJobs.length
               }}</ng-container>
             </p>
-            <mat-form-field appearance="outline">
-              <mat-label>Select a value</mat-label>
-              <form [formGroup]="optionForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="optionForm">
+              <mat-form-field appearance="outline">
+                <mat-label>Select a value</mat-label>
                 <mat-select
                   (selectionChange)="optionChanged($event.value)"
                   value="pagination"
@@ -182,8 +182,8 @@
                   <mat-option value="50">50</mat-option>
                   <mat-option value="80">80</mat-option>
                 </mat-select>
-              </form>
-            </mat-form-field>
+              </mat-form-field>
+            </form>
           </div>
         </div>
         <div class=" no-data" *ngIf="noData">

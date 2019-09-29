@@ -2,6 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { DataFetchService } from "../../services/data-fetch.service";
 import { IJobs } from "src/app/model/job-model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState
+} from "@angular/cdk/layout";
 
 @Component({
   selector: "app-explore",
@@ -9,12 +17,17 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   styleUrls: ["./explore.component.scss"]
 })
 export class ExploreComponent implements OnInit {
+  public isLtMedium$: Observable<boolean> = this.breakpointObserver
+    .observe([Breakpoints.XSmall, Breakpoints.Small])
+    .pipe(map((res: BreakpointState) => res.matches));
+
   jobs: IJobs[] = [];
   searchJobs: IJobs[] = [];
   filterJobs: IJobs[] = [];
   allJobs: IJobs[];
   collapseLocation = false;
   collaspseExperience = false;
+  screenSizeIsLtMedium = false;
 
   processing = true;
   count = 0;
@@ -43,7 +56,8 @@ export class ExploreComponent implements OnInit {
 
   constructor(
     private dataFetchSvc: DataFetchService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit() {
@@ -58,6 +72,10 @@ export class ExploreComponent implements OnInit {
     this.optionForm.controls.select.setValue("30");
     this.optionForm.markAsPristine();
     this.optionForm.markAsUntouched();
+
+    this.isLtMedium$.subscribe((isLtMedium: boolean) => {
+      this.screenSizeIsLtMedium = isLtMedium;
+    });
 
     this.dataFetchSvc.currentJobFetch.subscribe(state => {
       this.processing = state;
@@ -78,7 +96,6 @@ export class ExploreComponent implements OnInit {
       }
     });
   }
-
   // gets the number of total pages to display
   getPages() {
     this.pages = [];
@@ -133,14 +150,12 @@ export class ExploreComponent implements OnInit {
     this.pageStart = pageStart;
     this.pageEnd = pageStart + this.pagination - 1;
     if (this.searchQuery !== "" && this.filtersApplied === true) {
-      // console.log("filter and search too");
       this.jobs = [];
       this.doPaginationLocation();
     } else if (this.searchQuery !== "") {
       this.jobs = [];
       this.doPaginationQuery();
     } else if (this.filtersApplied === true) {
-      // console.log("Filters page change", this.pageStart, this.pageEnd);
       this.doPaginationLocation();
     } else {
       this.doPagination();
@@ -160,7 +175,6 @@ export class ExploreComponent implements OnInit {
   }
 
   doPaginationLocation() {
-    console.log("goin for this", this.filterJobs, this.jobs);
     this.filtersApplied = true;
     if (this.filterJobs.length === 0) {
       this.filterJobs = Array.from(this.jobs);
@@ -323,14 +337,12 @@ export class ExploreComponent implements OnInit {
           }
         });
       });
-      console.log("Check jobs", this.jobs);
       if (!this.jobs.length) {
         this.noSearchResult = true;
       }
       this.doPaginationLocation();
       this.getPages();
     } else {
-      console.log("filter Search, no query");
       this.jobs = [];
       this.selectedLocations.forEach(loc => {
         this.allJobs.forEach(job => {
@@ -351,7 +363,6 @@ export class ExploreComponent implements OnInit {
                 expStart >= Number(exp.split("-")[0].charAt(0)) &&
                 !this.jobs.includes(job)
               ) {
-                console.log("ADding job for the job", job);
                 this.jobs.push(job);
               }
             } else if (
@@ -399,11 +410,9 @@ export class ExploreComponent implements OnInit {
       this.selectedExperiences.push(experience);
       this.filterJobs = [];
       this.searchBasedOnLocations();
-      console.log("Experience toggled", experience);
     } else {
       this.removeExperiencess(experience);
     }
-    // console.log("Locations selected", this.selectedLocations);
     this.processing = false;
   }
 
@@ -416,7 +425,6 @@ export class ExploreComponent implements OnInit {
     }
     if (!this.selectedLocations.length) {
       this.searchQuery = this.searchForm.controls.search.value.toLowerCase();
-      // console.log("hmm empty location");
       this.searchJobs = [];
       this.filtersApplied = false;
       this.resetPages();
@@ -431,7 +439,6 @@ export class ExploreComponent implements OnInit {
 
         this.doPagination();
       } else {
-        console.log("in here");
         this.jobs = [];
         this.doPaginationQuery();
       }
@@ -449,7 +456,6 @@ export class ExploreComponent implements OnInit {
     }
     if (!this.selectedExperiences.length) {
       this.searchQuery = this.searchForm.controls.search.value.toLowerCase();
-      // console.log("hmm empty location");
       this.searchJobs = [];
       this.filtersApplied = false;
       this.resetPages();
@@ -464,7 +470,6 @@ export class ExploreComponent implements OnInit {
 
         this.doPagination();
       } else {
-        console.log("in here");
         this.jobs = [];
         this.doPaginationQuery();
       }
