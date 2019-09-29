@@ -26,12 +26,13 @@ body {
   margin: 0;
   color: black;
   font-family: "Montserrat", sans-serif !important;
-  background: rgb(89, 81, 219);
-  background: linear-gradient(
-    21deg,
-    rgba(89, 81, 219, 1) 0%,
-    rgba(0, 234, 255, 1) 80%
-  );
+  background: rgba(89, 81, 219, 0.95);
+  // background: linear-gradient(
+  //   21deg,
+  //   rgba(89, 81, 219, 1) 0%,
+  //   rgba(0, 234, 255, 1) 80%
+  // );
+  background-repeat: no-repeat;
 }
 
 .mat-card {
@@ -59,4 +60,14 @@ mat-toolbar {
 
 .secondaryTypography {
   font-family: "Montserrat", sans-serif !important;
+}
+
+.bg-pan {
+  background: rgba(89, 81, 219, 0.95);
+  background: linear-gradient(
+    21deg,
+    rgba(89, 81, 219, 1) 0%,
+    rgba(0, 234, 255, 1) 80%
+  );
+  background-repeat: no-repeat;
 }
