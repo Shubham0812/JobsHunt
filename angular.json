@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "JobsHunt:build"
+            "browserTarget": "JobHaven:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "JobsHunt:build:production"
+              "browserTarget": "JobHaven:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "JobsHunt:build"
+            "browserTarget": "JobHaven:build"
           }
         },
         "test": {
@@ -114,11 +114,11 @@
           },
           "configurations": {
             "production": {
-              "devServerTarget": "JobsHunt:serve:production"
+              "devServerTarget": "JobHaven:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "JobsHunt"
+  "defaultProject": "JobHaven"
 }
