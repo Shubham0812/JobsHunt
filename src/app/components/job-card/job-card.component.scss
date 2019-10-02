@@ -9,13 +9,27 @@
   max-height: 50px;
   overflow: hidden !important;
   text-overflow: clip !important;
+
+  @media only screen and (max-width: 450px) {
+    display: block;
+    max-height: none;
+  }
 }
 
-.apply-grid{
-    display: grid;
+.apply-grid {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-}
 
+  p {
+    @media only screen and (max-width: 386px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    grid-template-columns: 1fr 0.5fr;
+  }
+}
 
 mat-card {
   color: black;
@@ -37,11 +51,28 @@ mat-card {
   @media only screen and (max-width: 616px) {
     width: 450px;
   }
+
+  @media only screen and (max-width: 540px) {
+    width: 393px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    height: auto;
+    width: 320px;
+  }
+
+  @media only screen and (max-width: 386px) {
+    width: 280px;
+  }
 }
 
 .card-grid {
   display: grid;
   grid-template-rows: 1fr 0.4fr 0.1fr;
+
+  @media only screen and (max-width: 450px) {
+    grid-template-rows: none;
+  }
 }
 
 .primary-text {
@@ -62,6 +93,9 @@ button:hover {
   @media only screen and (max-width: 1220px) {
     margin-left: 8px;
   }
+  @media only screen and (max-width: 450px) {
+    margin-left: 0;
+  }
 }
 
 .card {
@@ -69,5 +103,15 @@ button:hover {
     .job-title {
       width: 280px;
     }
+  }
+}
+
+.truncate {
+  @media only screen and (max-width: 450px) {
+    max-width: 287px;
+  }
+
+  @media only screen and (max-width: 386px) {
+    max-width: 239px;
   }
 }

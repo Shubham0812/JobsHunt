@@ -12,7 +12,7 @@
         <div class="text-truncate company-name">
           <p class="mat-h2 primary-text">{{ jobData.companyname }}</p>
         </div>
-        <div class="location margin-left-xl ">
+        <div class="location margin-left-responsive-remove ">
           <mat-icon class="mat-primary-text">room</mat-icon>
           <p
             class="margin-remove-bottom"
@@ -65,13 +65,13 @@
         <mat-icon class="mat-primary-text">straighten</mat-icon>
         <div class="text-truncate">
           <p
-            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs truncate"
             *ngIf="jobData.skills"
           >
             {{ jobData.skills }}
           </p>
           <p
-            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs"
+            class="margin-remove-bottom mat-h4 secondaryTypography margin-left-xs truncate"
             *ngIf="!jobData.skills"
           >
             B.E. / B Tech Graduate
