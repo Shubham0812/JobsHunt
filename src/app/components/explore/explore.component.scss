@@ -29,13 +29,32 @@
   left: 0;
   text-align: center;
   color: white;
-  //   transform: translate(-50%, -50%);
-  //   -ms-transform: translate(-50%, -50%);
 }
 
 .info {
   font-size: 2rem;
   line-height: 1.1;
+}
+
+.banner {
+  // background-image: url("/assets/common//navigator/banners/bi_nso.jpg");
+  background-position: right;
+  background-size: cover;
+  height: 180px;
+  width: 100%;
+}
+
+.banner-description {
+  padding: 0 $size-xl;
+  margin: 0 16px;
+
+  @media only screen and (max-width: 368px) {
+    padding: 0 $size-m;
+    margin: 0 8px;
+  }
+  h2 {
+    font-weight: 900;
+  }
 }
 
 .search_field {
@@ -45,13 +64,20 @@
     border: none;
     background: none;
     color: white;
-    // outline: none;
   }
   mat-icon {
     font-size: 24px;
   }
   @include breakpoint-xs {
     width: 59%;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 70%;
+  }
+
+  @media only screen and (max-width: 360px) {
+    width: 80%;
   }
 }
 
@@ -61,6 +87,27 @@
 
 .result {
   align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  @media only screen and (max-width: 810px) {
+    display: grid;
+    grid-row-gap: 12px;
+  }
+}
+
+.option-container {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  @media only screen and (max-width: 498px) {
+    display: grid;
+    grid-row-gap: 12px;
+    font-size: 0.92rem;
+  }
 }
 
 .no-data {
@@ -120,10 +167,19 @@
   outline: none;
   cursor: pointer;
   transition: 0.5s;
+  background: none;
+  border: 2px solid #3f51b5;
+
+  mat-icon {
+    color: #3f51b5;
+    transition: 0.5s;
+  }
 }
 
 .normal-button:hover {
-  color: #039be5;
+  mat-icon {
+    color: #039be5 !important;
+  }
 }
 
 .margin-left4 {
@@ -138,7 +194,7 @@
   margin-right: 5rem;
 }
 
-.flex-b {
+.flex-between {
   justify-content: space-between;
 }
 

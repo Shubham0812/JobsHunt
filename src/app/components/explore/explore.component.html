@@ -84,8 +84,22 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="margin-top-xl margin-bottom-xl margin-left-xl margin-right-xl">
-      <ng-container *ngIf="!processing">
+    <ng-container *ngIf="!processing">
+      <div class="banner mat-primary-lite-background">
+        <div class="banner-description margin-bottom-m padding-top-m">
+          <h1
+            class="mat-primary-text mat-display-1 margin-bottom-l ws-mat-primary-text text-bold padding-top-l secondaryTypography"
+          >
+            Search for Jobs
+          </h1>
+          <h2 class="mat-h1 mat-title margin-top-xl secondaryTypography">
+            Find a job you like?
+          </h2>
+        </div>
+      </div>
+      <div
+        class="margin-top-xl margin-bottom-xl margin-left-responsive margin-right-responsive"
+      >
         <div class="margin-top-l text-center in-up">
           <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <mat-form-field
@@ -113,12 +127,12 @@
           </form>
         </div>
         <div
-          class="flex flex-b flex-middle result margin-left-l margin-right-l"
+          class="result margin-left-l margin-right-l"
           *ngIf="!noData"
           [ngClass]="{ 'flex-end': sideNavBarOpened }"
         >
           <div
-            class="flex flex-middle margin-left-xl in-left"
+            class="flex flex-middle in-left"
             *ngIf="!sideNavBarOpened"
           >
             <p class="margin-remove-bottom margin-top-xxs">Show Filters</p>
@@ -158,7 +172,7 @@
               </ng-container>
             </mat-chip-list>
           </div>
-          <div class="flex flex-middle result in-right" *ngIf="!errorData">
+          <div class="option-container in-right" *ngIf="!errorData">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
               <ng-container *ngIf="searchQuery === '' && !filtersApplied">{{
@@ -259,7 +273,7 @@
             </div>
           </app-horizontal-scroll>
         </ng-container>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>
