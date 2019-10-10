@@ -4,14 +4,14 @@ Web Page created with Angular 8, which helps the user to search and apply for jo
 
 ## Motivation
 
-This project was created for learning angular, the Jobs API is provided by BYJU's.
+This project was created for demonstrating my Angular skills, the Jobs API was provided by BYJU's.
 
 
 ## Technologies Used
 
  - Angular 8
  - Typescript
- - HTML5 & CSS3
+ - HTML5 & SCSS
  
  ## Features
  
@@ -48,13 +48,13 @@ This project was created for learning angular, the Jobs API is provided by BYJU'
 The project supports Pagination and filters.
 
 ## How to use ?
+
 Download the zip file or clone the project.
 
 #### Installing
 
  - Run `npm install` to install the necessary dependencies. 
- - Run `ng
-   serve -o`  in the terminal to run the project.
+ - Run `ng serve -o`  in the terminal to run the project.
 
 #### Prerequisites
 
@@ -64,5 +64,6 @@ Download the zip file or clone the project.
 
 
 ## Credits
+
 **©** **Shubham Kumar Singh** | *2019*
 
