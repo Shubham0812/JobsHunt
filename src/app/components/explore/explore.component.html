@@ -85,7 +85,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <ng-container *ngIf="!processing">
-      <div class="banner mat-primary-lite-background">
+      <!-- <div class="banner mat-primary-lite-background">
         <div class="banner-description margin-bottom-m padding-top-m">
           <h1
             class="mat-primary-text mat-display-1 margin-bottom-l ws-mat-primary-text text-bold padding-top-l secondaryTypography"
@@ -96,11 +96,11 @@
             Find a job you like?
           </h2>
         </div>
-      </div>
+      </div> -->
       <div
         class="margin-top-xl margin-bottom-xl margin-left-responsive margin-right-responsive"
       >
-        <div class="margin-top-l text-center in-up">
+        <div class="margin-top-l text-center">
           <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
             <mat-form-field
               appearance="outline"
@@ -127,12 +127,12 @@
           </form>
         </div>
         <div
-          class="result margin-left-l margin-right-l"
+          class="result"
           *ngIf="!noData"
           [ngClass]="{ 'flex-end': sideNavBarOpened }"
         >
           <div
-            class="flex flex-middle in-left"
+            class="flex flex-middle"
             *ngIf="!sideNavBarOpened"
           >
             <p class="margin-remove-bottom margin-top-xxs">Show Filters</p>
@@ -172,7 +172,7 @@
               </ng-container>
             </mat-chip-list>
           </div>
-          <div class="option-container in-right" *ngIf="!errorData">
+          <div class="option-container" *ngIf="!errorData">
             <p class="margin-remove-bottom margin-right-m">
               Showing {{ this.jobs.length }} results out of
               <ng-container *ngIf="searchQuery === '' && !filtersApplied">{{

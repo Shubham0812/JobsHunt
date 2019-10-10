@@ -90,10 +90,14 @@
   display: flex;
   justify-content: space-between;
   align-content: center;
+  margin-left: 48px;
+  margin-right:24px;
 
   @media only screen and (max-width: 810px) {
     display: grid;
     grid-row-gap: 12px;
+    margin-left: 24px;
+    margin-right: 24px;
   }
 }
 
@@ -102,6 +106,7 @@
   display: flex;
   justify-content: space-between;
   align-content: center;
+  margin-right: 24px;
 
   @media only screen and (max-width: 498px) {
     display: grid;
@@ -174,7 +179,7 @@
 
 .normal-button:hover {
   mat-icon {
-    color: #FF6F00 !important;
+    color: #ff6f00 !important;
   }
 }
 
